@@ -1,8 +1,0 @@
-# robots.txt for Ubuntu Paws Animal Rescue
-# Allow all well-behaved crawlers to index the whole site.
-User-agent: *
-Allow: /
-Disallow: /documents/
-
-# Replace YOUR-USERNAME with your GitHub (or Netlify) address before publishing
-Sitemap: https://YOUR-USERNAME.github.io/ubuntu-paws/sitemap.xml

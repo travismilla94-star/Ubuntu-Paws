@@ -1,7 +1,0 @@
-# Security headers (applied automatically when deployed on Netlify;
-# GitHub Pages sets its own HTTPS and basic headers).
-/*
-  X-Content-Type-Options: nosniff
-  X-Frame-Options: DENY
-  Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=()
