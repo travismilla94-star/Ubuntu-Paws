@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact &amp; Locations in Bramley and Randburg | Ubuntu Paws</title>
+  <meta name="description" content="Find Ubuntu Paws' main shelter in Bramley and our foster care office in Randburg, view the map and send us a message.">
+  <meta name="keywords" content="animal shelter Bramley, animal rescue Randburg, contact Ubuntu Paws, Johannesburg animal shelter address">
+  <meta name="author" content="Ubuntu Paws Animal Rescue">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0f6e56">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="canonical" href="https://YOUR-USERNAME.github.io/ubuntu-paws/contact.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Ubuntu Paws Animal Rescue">
+  <meta property="og:title" content="Contact &amp; Locations in Bramley and Randburg | Ubuntu Paws">
+  <meta property="og:description" content="Find Ubuntu Paws' main shelter in Bramley and our foster care office in Randburg, view the map and send us a message.">
+  <meta property="og:url" content="https://YOUR-USERNAME.github.io/ubuntu-paws/contact.html">
+  <meta property="og:image" content="https://YOUR-USERNAME.github.io/ubuntu-paws/images/og-image.png">
+  <meta property="og:image:alt" content="Illustration of a rescued dog and cat sitting together">
+  <meta property="og:locale" content="en_ZA">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contact &amp; Locations in Bramley and Randburg | Ubuntu Paws">
+  <meta name="twitter:description" content="Find Ubuntu Paws' main shelter in Bramley and our foster care office in Randburg, view the map and send us a message.">
+  <meta name="twitter:image" content="https://YOUR-USERNAME.github.io/ubuntu-paws/images/og-image.png">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header id="top">
+    <div class="logo">
+      <svg class="logo-mark" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true">
+        <ellipse cx="32" cy="42" rx="15" ry="13"/>
+        <ellipse cx="14" cy="28" rx="7" ry="9"/>
+        <ellipse cx="50" cy="28" rx="7" ry="9"/>
+        <ellipse cx="24" cy="14" rx="6" ry="8"/>
+        <ellipse cx="40" cy="14" rx="6" ry="8"/>
+      </svg>
+      Ubuntu Paws <span>Animal Rescue</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="enquiry.html">Enquiry</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" class="contact-main">
+    <section class="page-heading">
+      <h1>Contact us</h1>
+    </section>
+
+    <!-- Two organisation locations, as required -->
+    <section class="content-block locations">
+      <div class="location-card">
+        <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg> Main shelter</h2>
+        <p>12 Baobab Street<br>Bramley, Johannesburg, 2090</p>
+        <p>Tel: 011 555 0123<br>Email: shelter@ubuntupaws.org.za</p>
+        <p>Open Monday&ndash;Saturday, 09:00&ndash;16:00</p>
+        <a class="btn-link" href="https://www.openstreetmap.org/?mlat=-26.0968&amp;mlon=28.1056#map=16/-26.0968/28.1056" target="_blank" rel="noopener noreferrer">View main shelter on OpenStreetMap</a>
+      </div>
+
+      <div class="location-card">
+        <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg> Foster care office</h2>
+        <p>45 Jacaranda Avenue<br>Randburg, Johannesburg, 2194</p>
+        <p>Tel: 011 555 0456<br>Email: fostercare@ubuntupaws.org.za</p>
+        <p>Open Tuesday&ndash;Friday, 10:00&ndash;15:00</p>
+        <a class="btn-link" href="https://www.openstreetmap.org/?mlat=-26.0937&amp;mlon=28.0062#map=16/-26.0937/28.0062" target="_blank" rel="noopener noreferrer">View foster care office on OpenStreetMap</a>
+      </div>
+
+      <div class="map-wrap">
+        <div id="map" role="region" aria-label="Map showing the main shelter in Bramley and the foster care office in Randburg">
+          <p class="map-fallback">Loading map&hellip;</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- General contact form -->
+    <section class="content-block contact-form-block">
+      <h2>Send us a message</h2>
+      <p>Fill in the form and we will prepare an email for you to send to the right team. For adoption, volunteering or sponsorship, please use the <a href="enquiry.html">enquiry form</a> instead.</p>
+      <form action="#" method="post" class="contact-form" id="contact-form" novalidate>
+        <label for="name">Full name</label>
+        <input type="text" id="name" name="name" required minlength="2" maxlength="80" autocomplete="name"
+               data-validate="name" data-label="Full name" aria-describedby="name-error">
+        <span class="field-error" id="name-error" aria-live="polite"></span>
+
+        <label for="email">Email address</label>
+        <input type="email" id="email" name="email" required maxlength="120" autocomplete="email"
+               data-validate="email" data-label="Email address" aria-describedby="email-error">
+        <span class="field-error" id="email-error" aria-live="polite"></span>
+
+        <label for="phone">Phone number <span class="optional">(optional)</span></label>
+        <input type="tel" id="phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="e.g. 082 555 0123"
+               pattern="(\+27|0)[ ]?[1-9][0-9][ ]?[0-9]{3}[ ]?[0-9]{4}" maxlength="16"
+               data-validate="phone" data-label="Phone number" aria-describedby="phone-error">
+        <span class="field-error" id="phone-error" aria-live="polite"></span>
+
+        <label for="msg-type">Type of message</label>
+        <select id="msg-type" name="msg-type" required data-label="Message type" aria-describedby="msg-type-error">
+          <option value="">Please select an option</option>
+          <option value="general">General question</option>
+          <option value="adoption">Adoption question</option>
+          <option value="fostering">Fostering</option>
+          <option value="media">Media or press</option>
+          <option value="donation">Donations</option>
+        </select>
+        <span class="field-error" id="msg-type-error" aria-live="polite"></span>
+
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" name="subject" required minlength="3" maxlength="100"
+               data-validate="text" data-label="Subject" aria-describedby="subject-error">
+        <span class="field-error" id="subject-error" aria-live="polite"></span>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required minlength="10" maxlength="1000"
+                  data-validate="text" data-label="Your message" aria-describedby="message-error message-count"></textarea>
+        <span class="char-count" id="message-count" aria-hidden="true">0 / 1000</span>
+        <span class="field-error" id="message-error" aria-live="polite"></span>
+
+        <div class="hp" aria-hidden="true">
+          <label for="company">Leave this field empty</label>
+          <input type="text" id="company" name="company" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Prepare my email</button>
+      </form>
+      <div class="form-response" id="email-preview" aria-live="polite" hidden></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Ubuntu Paws Animal Rescue. All rights reserved.</p>
+    <p>This is a fictional organisation created for academic purposes as part of an IIE web development project.</p>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="services.html">Services</a>
+      <a href="enquiry.html">Enquiry</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="back-to-top" href="#top">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+      Back to top
+    </a>
+  </footer>
+
+  <!-- Floating call-to-action: keeps the primary conversion goal reachable -->
+  <a class="fab" href="enquiry.html">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+    <span class="fab-label">Adopt &amp; Donate</span>
+  </a>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
