@@ -1,4 +1,4 @@
-:root {
+  :root {
   --color-primary: #0f6e56;
   --color-primary-dark: #0b5443;
   --color-primary-light: #eaf7f2;
@@ -139,6 +139,7 @@ main {
 
 .page-heading {
   margin-bottom: 1.5rem;
+  position: relative;
 }
 
 .page-heading h1,
@@ -177,6 +178,21 @@ p {
   box-shadow: var(--shadow-sm);
   padding: 1.5rem;
   margin: 1.5rem 0;
+}
+
+.content-block h2 {
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.content-block h2::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 0.25rem;
+  margin-top: 0.55rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--color-secondary) 0%, #e76d41 100%);
 }
 
 .hero {
@@ -352,6 +368,7 @@ button[type="submit"]:focus-visible {
   display: flex;
   align-items: center;
   gap: 0.9rem;
+  min-height: 88px;
 }
 
 .team-list strong {
@@ -377,11 +394,13 @@ button[type="submit"]:focus-visible {
   padding: 0.7rem 1rem;
   font-weight: 700;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .tablist button[role="tab"][aria-selected="true"] {
   background: var(--color-primary);
   color: var(--color-white);
+  box-shadow: 0 8px 18px rgba(15, 110, 86, 0.15);
 }
 
 .tabpanel {
@@ -393,6 +412,15 @@ button[type="submit"]:focus-visible {
 
 .tabpanel[hidden] {
   display: none;
+}
+
+.tabpanel h3.tab-heading {
+  margin-top: 0;
+  color: var(--color-primary-dark);
+}
+
+.btn-link {
+  margin-top: 0.6rem;
 }
 
 .toolbar {
