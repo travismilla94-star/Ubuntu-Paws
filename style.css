@@ -1,0 +1,1774 @@
+/* ==========================================================================
+   Ubuntu Paws Animal Rescue — stylesheet
+   PART 2: CSS Styling and Responsive Design
+
+   Structure of this file:
+     1. CSS custom properties (design tokens)
+     2. Reset / base styles
+     3. Typography
+     4. Page layout (CSS Grid)
+     5. Header & navigation (Flexbox)
+     6. Buttons & interactive states
+     7. Hero section
+     8. Icon badges
+     9. Component styles (cards, forms, etc.)
+    10. Footer
+    11. Motion (entrance animation)
+    12. Responsive breakpoints (mobile-first)
+
+   Breakpoints used across this file:
+     - Base styles                : mobile,  up to 599px
+     - @media (min-width: 600px)  : tablet
+     - @media (min-width: 900px)  : small desktop
+     - @media (min-width: 1200px) : large desktop
+   ========================================================================== */
+
+/* -------------------------------------------------------------------------
+   1. CSS custom properties
+   ------------------------------------------------------------------------- */
+:root {
+  /* Colour scheme */
+  --color-primary: #0f6e56;
+  --color-primary-dark: #0b5443;
+  --color-primary-light: #e1f5ee;
+  --color-secondary: #d85a30;
+  --color-secondary-dark: #b6461f;
+  --color-secondary-light: #fbe7dd;
+  --color-gold: #d1980b;
+  --color-gold-dark: #a3760a;
+  --color-gold-light: #fbf0d9;
+  --color-blue: #3a6ea8;
+  --color-blue-dark: #2c5480;
+  --color-blue-light: #e3edf7;
+  --color-text: #2c2c2a;
+  --color-text-light: #5c5c58;
+  --color-bg: #fbfaf7;
+  --color-surface: #ffffff;
+  --color-border: #e4e1d6;
+  --color-white: #ffffff;
+
+  --gradient-brand: linear-gradient(135deg, var(--color-primary) 0%, #14876a 100%);
+  --gradient-accent: linear-gradient(135deg, var(--color-secondary) 0%, #e8734a 100%);
+  --gradient-gold: linear-gradient(135deg, var(--color-gold) 0%, #e8b23a 100%);
+  --gradient-blue: linear-gradient(135deg, var(--color-blue) 0%, #5b8fc9 100%);
+  --gradient-header: linear-gradient(120deg, var(--color-primary) 0%, #14876a 55%, var(--color-blue) 130%);
+
+  /* Typography */
+  --font-heading: 'Poppins', 'Segoe UI', Arial, sans-serif;
+  --font-body: 'Nunito Sans', Arial, Helvetica, sans-serif;
+
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-md: 1.15rem;
+  --fs-lg: 1.4rem;
+  --fs-xl: clamp(1.8rem, 1.4rem + 1.4vw, 2.6rem);
+  --fs-2xl: clamp(2.3rem, 1.7rem + 2.6vw, 3.4rem);
+
+  /* Spacing scale (relative units) */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+
+  /* Misc */
+  --radius: 10px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 1px 3px rgba(11, 84, 67, 0.1);
+  --shadow-md: 0 10px 24px rgba(11, 84, 67, 0.14);
+  --shadow-lg: 0 20px 45px rgba(11, 84, 67, 0.18);
+  --transition: 0.2s ease-in-out;
+  --max-width: 1140px;
+
+  /* Decorative paw-print pattern used behind the hero (own artwork, encoded
+     inline so no extra HTTP request is needed) */
+  --paw-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cg fill='%230f6e56' fill-opacity='0.06'%3E%3Cellipse cx='45' cy='55' rx='9' ry='12'/%3E%3Cellipse cx='31' cy='38' rx='4.5' ry='6'/%3E%3Cellipse cx='45' cy='32' rx='4.5' ry='6'/%3E%3Cellipse cx='59' cy='38' rx='4.5' ry='6'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* -------------------------------------------------------------------------
+   2. Reset / base styles
+   ------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* Allows all rem units throughout this file to scale with user/browser
+     font-size settings, which is important for accessibility. */
+  font-size: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.65;
+  overflow-x: hidden;
+
+  /* Whole-page layout: header / main / footer, using CSS Grid with named
+     areas so the footer always sits at the bottom, even on short pages. */
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+  min-height: 100vh;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style-position: inside;
+}
+
+::selection {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+}
+
+/* -------------------------------------------------------------------------
+   3. Typography
+   ------------------------------------------------------------------------- */
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-primary-dark);
+}
+
+h1 {
+  font-size: var(--fs-2xl);
+  letter-spacing: -0.015em;
+}
+
+h2 {
+  font-size: var(--fs-lg);
+  margin-bottom: var(--space-sm);
+  letter-spacing: -0.005em;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+/* Small decorative underline accent under every h2 */
+h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 2.5rem;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--gradient-accent);
+}
+
+.page-heading h1 + p,
+.hero-text h1 + p,
+.locations h2::after,
+.contact-form-block h2::after {
+  /* keep underline off headings that sit inside coloured/inverse contexts */
+}
+
+h3 {
+  font-size: var(--fs-md);
+  margin-bottom: 0.4rem;
+}
+
+p {
+  margin-bottom: var(--space-sm);
+  max-width: 65ch;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-secondary-dark);
+  background-color: var(--color-secondary-light);
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  margin-bottom: var(--space-sm);
+}
+
+.page-heading p {
+  color: var(--color-text-light);
+  font-size: var(--fs-md);
+}
+
+/* -------------------------------------------------------------------------
+   4. Page layout
+   ------------------------------------------------------------------------- */
+main {
+  grid-area: main;
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-md) var(--space-xl);
+}
+
+.page-heading {
+  margin-bottom: var(--space-lg);
+  position: relative;
+}
+
+/* Soft decorative blob behind inner-page headings, echoing the hero's
+   paw-print pattern so every page shares the same visual language */
+.page-heading::before {
+  content: "";
+  position: absolute;
+  top: -1.5rem;
+  left: -1.5rem;
+  width: 9rem;
+  height: 9rem;
+  background-color: var(--color-primary-light);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.intro,
+.content-block {
+  margin-top: var(--space-lg);
+}
+
+/* Full-bleed band: lets a section's background span the full viewport
+   width even though it lives inside the max-width `main` container. */
+.full-bleed {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  padding: var(--space-xl) var(--space-md);
+}
+
+.full-bleed > * {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* -------------------------------------------------------------------------
+   5. Header & navigation (Flexbox)
+   ------------------------------------------------------------------------- */
+header {
+  grid-area: header;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--gradient-header);
+  color: var(--color-white);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: var(--shadow-sm);
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: var(--fs-md);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo .logo-mark {
+  display: inline-flex;
+  width: 1.9rem;
+  height: 1.9rem;
+  flex-shrink: 0;
+}
+
+.logo span {
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem;
+}
+
+nav a {
+  display: inline-block;
+  color: var(--color-white);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  transition: background-color var(--transition), opacity var(--transition);
+}
+
+nav a:hover,
+nav a:focus-visible {
+  background-color: rgba(255, 255, 255, 0.16);
+}
+
+nav a.active {
+  background-color: rgba(255, 255, 255, 0.22);
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.5);
+}
+
+/* -------------------------------------------------------------------------
+   6. Buttons & interactive states
+   ------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.6rem;
+  border: none;
+  border-radius: 999px;
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--fs-base);
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), background-position var(--transition);
+}
+
+.btn .btn-icon {
+  width: 1.1em;
+  height: 1.1em;
+  transition: transform var(--transition);
+}
+
+.btn:hover .btn-icon,
+.btn:focus-visible .btn-icon {
+  transform: translateX(3px);
+}
+
+.btn-primary {
+  background: var(--gradient-brand);
+  color: var(--color-white);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: var(--gradient-accent);
+  color: var(--color-white);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--color-secondary-dark);
+  outline-offset: 2px;
+}
+
+/* Shine sweep across buttons on hover */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.55s ease;
+}
+
+.btn:hover::before,
+.btn:focus-visible::before {
+  left: 125%;
+}
+
+/* -------------------------------------------------------------------------
+   7. Hero section
+   ------------------------------------------------------------------------- */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-lg) var(--space-md);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-primary-light);
+  background-image: var(--paw-pattern);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-text {
+  text-align: center;
+}
+
+.hero-text h1 {
+  margin-bottom: var(--space-sm);
+}
+
+.hero-text p {
+  margin: 0 auto var(--space-sm);
+  color: var(--color-text-light);
+  font-size: var(--fs-md);
+  max-width: 46ch;
+}
+
+.hero-image {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.cta-buttons {
+  margin-top: var(--space-md);
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.trust-badges {
+  margin-top: var(--space-md);
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.trust-badges li {
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  box-shadow: var(--shadow-sm);
+}
+
+.trust-badges svg {
+  width: 1em;
+  height: 1em;
+  color: var(--color-secondary);
+  flex-shrink: 0;
+}
+
+/* -------------------------------------------------------------------------
+   8. Icon badges
+   ------------------------------------------------------------------------- */
+.icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--gradient-brand);
+  color: var(--color-white);
+  margin-bottom: var(--space-sm);
+  flex-shrink: 0;
+}
+
+.icon-badge svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.icon-badge.accent {
+  background: var(--gradient-accent);
+}
+
+.icon-badge.gold {
+  background: var(--gradient-gold);
+}
+
+.icon-badge.blue {
+  background: var(--gradient-blue);
+}
+
+/* Avatar with initials, used on the team list for a more distinctive
+   per-person look than a repeated generic icon */
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  color: var(--color-white);
+  box-shadow: 0 0 0 3px var(--color-surface), var(--shadow-sm);
+  background: var(--gradient-brand);
+}
+
+.avatar.accent {
+  background: var(--gradient-accent);
+}
+
+.avatar.gold {
+  background: var(--gradient-gold);
+}
+
+.avatar.blue {
+  background: var(--gradient-blue);
+}
+
+/* -------------------------------------------------------------------------
+   9. Component styles
+   ------------------------------------------------------------------------- */
+
+/* Full-bleed stats band on the homepage, with angled top/bottom edges */
+.stats-band {
+  background-color: var(--color-primary-light);
+  background-image: var(--paw-pattern);
+  margin-top: var(--space-lg);
+  clip-path: polygon(0 2.5rem, 100% 0, 100% calc(100% - 2.5rem), 0 100%);
+  padding-top: calc(var(--space-xl) + 2.5rem);
+  padding-bottom: calc(var(--space-xl) + 2.5rem);
+}
+
+.highlights {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+.highlight-card {
+  text-align: center;
+  background-color: var(--color-surface);
+  padding: var(--space-md);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.highlight-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.highlight-card h3 {
+  font-size: var(--fs-2xl);
+  color: var(--color-primary);
+  margin-bottom: 0;
+}
+
+.highlight-card:nth-child(2) h3 {
+  color: var(--color-gold-dark);
+}
+
+.highlight-card:nth-child(3) h3 {
+  color: var(--color-blue-dark);
+}
+
+/* Card grids: animals, team, locations. */
+.animal-list,
+.team-list,
+.locations {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.animal-list li,
+.team-list li,
+.location-card {
+  list-style: none;
+  background-color: var(--color-surface);
+  padding: var(--space-md);
+  border-radius: var(--radius);
+  border-top: 4px solid var(--color-primary);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.animal-list li {
+  position: relative;
+  overflow: hidden;
+}
+
+.animal-list li::before {
+  content: "Available!";
+  position: absolute;
+  top: 0.9rem;
+  right: -2.6rem;
+  width: 10rem;
+  text-align: center;
+  transform: rotate(45deg);
+  background: var(--gradient-accent);
+  color: var(--color-white);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  padding: 0.2rem 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.animal-list li:hover,
+.location-card:hover,
+.team-list li:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Cycle each animal card through the full colour palette instead of a
+   single repeated accent, so the grid reads as more varied/lively */
+.animal-list li:nth-child(3n+1) {
+  --card-color: var(--color-secondary-dark);
+  --card-gradient: var(--gradient-accent);
+  border-top-color: var(--color-secondary);
+}
+
+.animal-list li:nth-child(3n+2) {
+  --card-color: var(--color-blue-dark);
+  --card-gradient: var(--gradient-blue);
+  border-top-color: var(--color-blue);
+}
+
+.animal-list li:nth-child(3n) {
+  --card-color: var(--color-gold-dark);
+  --card-gradient: var(--gradient-gold);
+  border-top-color: var(--color-gold);
+}
+
+.animal-list li h3 {
+  color: var(--card-color, var(--color-secondary-dark));
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.animal-list li::before {
+  background: var(--card-gradient, var(--gradient-accent));
+}
+
+.team-list li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.team-list li:nth-child(4n+1) { border-top-color: var(--color-primary); }
+.team-list li:nth-child(4n+2) { border-top-color: var(--color-secondary); }
+.team-list li:nth-child(4n+3) { border-top-color: var(--color-gold); }
+.team-list li:nth-child(4n)   { border-top-color: var(--color-blue); }
+
+.team-list .icon-badge,
+.team-list .avatar {
+  margin-bottom: 0;
+}
+
+.location-card:nth-child(2n+1) {
+  border-top-color: var(--color-primary);
+}
+
+.location-card:nth-child(2n) {
+  border-top-color: var(--color-blue);
+}
+
+.location-card:nth-child(2n) svg {
+  color: var(--color-blue);
+}
+
+.location-card h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.location-card h2::after {
+  content: none;
+}
+
+.location-card svg {
+  width: 1.2em;
+  height: 1.2em;
+  color: var(--color-secondary);
+  flex-shrink: 0;
+}
+
+/* Forms */
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 32rem;
+  margin-top: var(--space-sm);
+  background-color: var(--color-surface);
+  padding: var(--space-md);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+form label {
+  margin-top: var(--space-sm);
+  font-weight: 600;
+  font-family: var(--font-heading);
+  font-size: var(--fs-sm);
+}
+
+form input,
+form select,
+form textarea {
+  padding: 0.6rem 0.7rem;
+  margin-top: 0.3rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: var(--fs-base);
+  background-color: var(--color-bg);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+form input:hover,
+form select:hover,
+form textarea:hover {
+  border-color: var(--color-text-light);
+}
+
+form input:focus-visible,
+form select:focus-visible,
+form textarea:focus-visible {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+/* Small inline-icon prefix inside relevant input types, using the same
+   colour as the brand so fields feel considered rather than default */
+form input[type="email"],
+form input[type="tel"],
+form input[type="text"] {
+  background-repeat: no-repeat;
+  background-position: 0.7rem center;
+  background-size: 1.1rem;
+  padding-left: 2.4rem;
+}
+
+form input[type="email"] {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235c5c58' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 4h16v16H4z'/%3E%3Cpath d='M22 6l-10 7L2 6'/%3E%3C/svg%3E");
+}
+
+form input[type="tel"] {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235c5c58' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .6 3a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c1 .3 2 .5 3 .6a2 2 0 0 1 1.7 2z'/%3E%3C/svg%3E");
+}
+
+form input[type="text"] {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235c5c58' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E");
+}
+
+form input[type="text"][name="subject"] {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235c5c58' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 4h16v16H4z'/%3E%3Cpath d='M4 4l16 16M20 4L4 20'/%3E%3C/svg%3E");
+}
+
+form button {
+  margin-top: var(--space-md);
+  align-self: flex-start;
+}
+
+/* -------------------------------------------------------------------------
+   10. Footer
+   ------------------------------------------------------------------------- */
+footer {
+  grid-area: footer;
+  text-align: center;
+  padding: var(--space-md);
+  background: linear-gradient(135deg, var(--color-text) 0%, #1c1c1a 100%);
+  color: var(--color-white);
+  font-size: var(--fs-sm);
+}
+
+footer p + p {
+  margin-top: 0.3rem;
+  opacity: 0.7;
+}
+
+.back-to-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: var(--space-sm);
+  color: var(--color-white);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  opacity: 0.85;
+  transition: opacity var(--transition);
+}
+
+.back-to-top:hover,
+.back-to-top:focus-visible {
+  opacity: 1;
+}
+
+.back-to-top svg {
+  width: 1em;
+  height: 1em;
+}
+
+/* Floating call-to-action, fixed to the viewport so the primary
+   conversion goal (adopt/donate) is always reachable while browsing */
+.fab {
+  position: fixed;
+  right: var(--space-md);
+  bottom: var(--space-md);
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.3rem;
+  border-radius: 999px;
+  background: var(--gradient-accent);
+  color: var(--color-white);
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  box-shadow: var(--shadow-lg);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.fab svg {
+  width: 1.2em;
+  height: 1.2em;
+  flex-shrink: 0;
+}
+
+.fab:hover,
+.fab:focus-visible {
+  transform: translateY(-3px) scale(1.03);
+}
+
+.fab .fab-label {
+  display: none;
+}
+
+/* -------------------------------------------------------------------------
+   11. Motion (entrance animation)
+   ------------------------------------------------------------------------- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-text > * {
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+.hero-text > *:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.hero-text > *:nth-child(3) {
+  animation-delay: 0.16s;
+}
+
+.hero-text > *:nth-child(4) {
+  animation-delay: 0.24s;
+}
+
+.hero-text > *:nth-child(5) {
+  animation-delay: 0.32s;
+}
+
+.hero-image {
+  animation: fadeInUp 0.7s ease-out 0.1s both;
+}
+
+.page-heading,
+.intro,
+.content-block {
+  animation: fadeInUp 0.5s ease-out both;
+}
+
+.stats-band .highlight-card:nth-child(1) { animation: fadeInUp 0.5s ease-out 0.05s both; }
+.stats-band .highlight-card:nth-child(2) { animation: fadeInUp 0.5s ease-out 0.15s both; }
+.stats-band .highlight-card:nth-child(3) { animation: fadeInUp 0.5s ease-out 0.25s both; }
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   12. Responsive breakpoints (mobile-first)
+   ========================================================================== */
+
+/* --- Tablet: 600px and up ------------------------------------------------ */
+@media (min-width: 600px) {
+  header {
+    padding: var(--space-sm) var(--space-lg);
+  }
+
+  .fab .fab-label {
+    display: inline;
+  }
+
+  .highlights {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .locations {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .animal-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --- Small desktop: 900px and up ----------------------------------------- */
+@media (min-width: 900px) {
+  main {
+    padding: var(--space-xl) var(--space-md);
+  }
+
+  /* Two-column hero: copy on the left, illustration on the right */
+  .hero {
+    grid-template-columns: 1.1fr 1fr;
+    text-align: left;
+    padding: var(--space-xl);
+  }
+
+  .hero-text {
+    text-align: left;
+  }
+
+  .hero-text p {
+    margin-left: 0;
+  }
+
+  .cta-buttons {
+    justify-content: flex-start;
+  }
+
+  .trust-badges {
+    justify-content: flex-start;
+  }
+
+  .animal-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .team-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Two-column layout for the contact page: location cards beside the
+     message form, using grid-template-areas as required by the brief. */
+  main.contact-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "heading heading"
+      "locations form";
+    column-gap: var(--space-lg);
+  }
+
+  main.contact-main .page-heading {
+    grid-area: heading;
+  }
+
+  main.contact-main .locations {
+    grid-area: locations;
+    grid-template-columns: 1fr;
+    align-content: start;
+  }
+
+  main.contact-main .contact-form-block {
+    grid-area: form;
+  }
+}
+
+/* --- Large desktop: 1200px and up ----------------------------------------- */
+@media (min-width: 1200px) {
+  :root {
+    --max-width: 1200px;
+  }
+
+  .hero {
+    padding: var(--space-xl) var(--space-lg);
+  }
+}
+
+/* ==========================================================================
+   PART 3: Functionality and SEO additions
+   13. Utilities and accessibility
+   14. Mobile navigation toggle
+   15. Scroll reveal
+   16. Tabs and accordion
+   17. Services toolbar, animal cards, tags
+   18. Gallery, modal and lightbox
+   19. Forms: validation states and responses
+   20. Map
+   ========================================================================== */
+
+/* -------------------------------------------------------------------------
+   13. Utilities and accessibility
+   ------------------------------------------------------------------------- */
+[hidden] {
+  display: none !important;
+}
+
+img {
+  height: auto;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--space-sm);
+  top: -4rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius);
+  background: var(--color-secondary-dark);
+  color: var(--color-white);
+  font-weight: 700;
+  text-decoration: none;
+  transition: top var(--transition);
+}
+
+.skip-link:focus {
+  top: var(--space-sm);
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem 1.25rem;
+  margin-bottom: var(--space-sm);
+}
+
+.footer-nav a {
+  color: var(--color-white);
+  text-decoration: none;
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+.footer-nav a:hover,
+.footer-nav a:focus-visible {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.btn-link {
+  display: inline-block;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  transition: color var(--transition);
+}
+
+.btn-link:hover {
+  color: var(--color-secondary-dark);
+}
+
+.btn-link:focus-visible {
+  outline: 3px solid var(--color-secondary-dark);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.location-card .btn-link {
+  margin-top: 0.25rem;
+}
+
+.btn[disabled] {
+  opacity: 0.65;
+  cursor: progress;
+  transform: none;
+}
+
+/* -------------------------------------------------------------------------
+   14. Mobile navigation toggle (only exists when JavaScript is running)
+   ------------------------------------------------------------------------- */
+.nav-toggle {
+  display: none;
+}
+
+.js .nav-toggle {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0 0.65rem;
+  border: 0;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.16);
+  cursor: pointer;
+}
+
+.nav-toggle:focus-visible {
+  outline: 3px solid var(--color-white);
+  outline-offset: 2px;
+}
+
+.nav-toggle-bar {
+  display: block;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--color-white);
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.js header nav {
+  display: none;
+  width: 100%;
+}
+
+.js header nav.is-open {
+  display: block;
+}
+
+.js header nav ul {
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.js header nav a {
+  display: block;
+}
+
+/* -------------------------------------------------------------------------
+   15. Scroll reveal (applied by JavaScript, so content is never hidden
+       for visitors without it)
+   ------------------------------------------------------------------------- */
+.js .reveal {
+  opacity: 0;
+  translate: 0 18px;
+  transition: opacity 0.6s ease, translate 0.6s ease,
+    transform var(--transition), box-shadow var(--transition);
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  translate: none;
+}
+
+/* -------------------------------------------------------------------------
+   16. Tabs and accordion
+   ------------------------------------------------------------------------- */
+.tablist {
+  display: none;
+}
+
+.js .tablist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: var(--space-sm);
+}
+
+.js .tab-heading {
+  display: none;
+}
+
+.tablist [role="tab"] {
+  padding: 0.6rem 1.2rem;
+  border: 2px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  transition: background-color var(--transition), border-color var(--transition),
+    box-shadow var(--transition), color var(--transition);
+}
+
+.tablist [role="tab"]:hover {
+  border-color: var(--color-primary);
+}
+
+.tablist [role="tab"][aria-selected="true"] {
+  background: var(--gradient-brand);
+  border-color: transparent;
+  color: var(--color-white);
+  box-shadow: var(--shadow-sm);
+}
+
+.tablist [role="tab"]:focus-visible,
+.tabpanel:focus-visible {
+  outline: 3px solid var(--color-secondary-dark);
+  outline-offset: 2px;
+}
+
+.tabpanel {
+  margin-bottom: var(--space-sm);
+  padding: var(--space-md);
+  border-left: 4px solid var(--color-primary);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.tabpanel:nth-of-type(2n) {
+  border-left-color: var(--color-secondary);
+}
+
+.accordion h3 {
+  margin: 0 0 0.5rem;
+  font-size: inherit;
+}
+
+.accordion-trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  color: var(--color-primary-dark);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--fs-base);
+  text-align: left;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: background-color var(--transition), border-color var(--transition);
+}
+
+.js .accordion-trigger::after {
+  content: "+";
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--color-secondary);
+}
+
+.js .accordion-trigger[aria-expanded="true"]::after {
+  content: "\2212";
+}
+
+.accordion-trigger:hover {
+  border-color: var(--color-primary);
+}
+
+.accordion-trigger[aria-expanded="true"] {
+  background: var(--color-primary-light);
+  border-color: var(--color-primary);
+}
+
+.accordion-trigger:focus-visible {
+  outline: 3px solid var(--color-secondary-dark);
+  outline-offset: 2px;
+}
+
+.accordion-panel {
+  margin-bottom: 0.5rem;
+  padding: 0.25rem 1.25rem 1rem;
+}
+
+/* -------------------------------------------------------------------------
+   17. Services toolbar, animal cards, tags
+   ------------------------------------------------------------------------- */
+.toolbar {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+  padding: var(--space-md);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.toolbar-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbar label {
+  margin-bottom: 0.3rem;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+}
+
+.toolbar input,
+.toolbar select {
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background-color: var(--color-bg);
+  font: inherit;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.toolbar input:hover,
+.toolbar select:hover {
+  border-color: var(--color-text-light);
+}
+
+.toolbar input:focus-visible,
+.toolbar select:focus-visible {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.result-count {
+  margin-top: var(--space-sm);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-text-light);
+}
+
+.empty-state {
+  margin-top: var(--space-sm);
+  padding: var(--space-md);
+  border-radius: var(--radius);
+  background: var(--color-secondary-light);
+}
+
+.paw-icon {
+  width: 1.1em;
+  height: 1.1em;
+  flex-shrink: 0;
+}
+
+.animal-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.6rem;
+}
+
+.tag {
+  padding: 0.15rem 0.65rem;
+  border-radius: 999px;
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.tag-available {
+  background: #dff3e4;
+  color: #14633a;
+}
+
+.tag-pending {
+  background: var(--color-gold-light);
+  color: var(--color-gold-dark);
+}
+
+.animal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.25rem;
+  margin-top: 0.75rem;
+}
+
+.animal-list li.is-pending::before {
+  content: "Pending";
+  background: var(--gradient-gold);
+}
+
+/* -------------------------------------------------------------------------
+   18. Gallery, modal and lightbox
+   ------------------------------------------------------------------------- */
+.gallery {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.gallery li {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.gallery a {
+  display: block;
+  height: 100%;
+  cursor: zoom-in;
+}
+
+.gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.gallery a:hover img,
+.gallery a:focus-visible img {
+  transform: scale(1.07);
+}
+
+.gallery a:focus-visible {
+  outline: 3px solid var(--color-secondary-dark);
+  outline-offset: -3px;
+}
+
+.modal {
+  width: min(92vw, 34rem);
+  max-height: 90vh;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: var(--shadow-lg);
+  overflow: auto;
+}
+
+.modal::backdrop,
+.lightbox::backdrop {
+  background: rgba(20, 30, 28, 0.62);
+  backdrop-filter: blur(2px);
+}
+
+.modal[open] {
+  animation: fadeInUp 0.3s ease-out;
+}
+
+.modal-body {
+  padding: var(--space-md);
+}
+
+.modal-img {
+  width: 100%;
+  max-height: 16rem;
+  margin-bottom: var(--space-sm);
+  border-radius: var(--radius);
+  object-fit: cover;
+}
+
+.modal-fee {
+  font-weight: 700;
+  color: var(--color-primary-dark);
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 2;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: background-color var(--transition);
+}
+
+.modal-close:hover {
+  background: var(--color-secondary-light);
+}
+
+.modal-close:focus-visible,
+.lightbox-nav:focus-visible {
+  outline: 3px solid var(--color-secondary-dark);
+  outline-offset: 2px;
+}
+
+.lightbox {
+  width: min(94vw, 56rem);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: visible;
+}
+
+.lightbox[open] {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lightbox figure {
+  margin: 0;
+}
+
+.lightbox img {
+  width: 100%;
+  max-height: 75vh;
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  object-fit: contain;
+}
+
+.lightbox-caption {
+  margin: 0.75rem auto 0;
+  color: var(--color-white);
+  text-align: center;
+}
+
+.lightbox-nav {
+  width: 3rem;
+  height: 3rem;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.lightbox .modal-close {
+  top: -3rem;
+  right: 0;
+}
+
+/* -------------------------------------------------------------------------
+   19. Forms: validation states and responses
+   ------------------------------------------------------------------------- */
+.field-error {
+  min-height: 1.25rem;
+  margin-top: 0.2rem;
+  color: #b3261e;
+  font-size: var(--fs-sm);
+}
+
+form [aria-invalid="true"] {
+  border-color: #b3261e;
+}
+
+form [aria-invalid="true"]:focus-visible {
+  box-shadow: 0 0 0 3px #f9dedc;
+}
+
+form [aria-invalid="false"] {
+  border-color: #7fb89a;
+}
+
+.optional {
+  font-weight: 400;
+  color: var(--color-text-light);
+}
+
+.char-count {
+  align-self: flex-end;
+  margin-top: 0.2rem;
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Honeypot field: off-screen for people, visible to naive spam bots */
+.hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form-response {
+  max-width: 32rem;
+  margin-top: var(--space-md);
+}
+
+.alert {
+  padding: 0.9rem 1.1rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+}
+
+.alert-error {
+  border: 1px solid #f5c2be;
+  background: #fdecea;
+  color: #8c1d18;
+}
+
+.response-card {
+  padding: var(--space-md);
+  border-top: 4px solid var(--color-primary);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-md);
+  animation: fadeInUp 0.4s ease-out;
+}
+
+.response-card ul {
+  margin: 0.5rem 0 1rem;
+}
+
+.response-small {
+  margin-bottom: 0;
+  font-size: var(--fs-sm);
+  color: var(--color-text-light);
+}
+
+.email-summary {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25rem 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.email-summary dt {
+  font-weight: 700;
+}
+
+.email-summary dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.email-body {
+  max-height: 14rem;
+  margin-bottom: 0.75rem;
+  padding: 0.75rem;
+  overflow: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-bg);
+  font-family: inherit;
+  font-size: var(--fs-sm);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* -------------------------------------------------------------------------
+   20. Map
+   ------------------------------------------------------------------------- */
+.map-wrap {
+  grid-column: 1 / -1;
+}
+
+#map {
+  position: relative;
+  z-index: 0;
+  height: 18rem;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--color-primary-light);
+  box-shadow: var(--shadow-sm);
+}
+
+.map-fallback {
+  padding: var(--space-md);
+  color: var(--color-text-light);
+}
+
+/* -------------------------------------------------------------------------
+   Part 3 breakpoints
+   ------------------------------------------------------------------------- */
+@media (min-width: 600px) {
+  .js .nav-toggle {
+    display: none;
+  }
+
+  .js header nav {
+    display: block;
+    width: auto;
+  }
+
+  .js header nav ul {
+    flex-direction: row;
+    gap: 0.15rem;
+  }
+
+  .js header nav a {
+    display: inline-block;
+  }
+
+  .toolbar {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 900px) {
+  .gallery {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

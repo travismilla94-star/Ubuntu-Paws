@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adopt a Dog, Cat or Rabbit in Johannesburg | Ubuntu Paws</title>
+  <meta name="description" content="Browse rescued dogs, cats and rabbits available for adoption in Johannesburg. Search by species, age and name, then enquire online.">
+  <meta name="keywords" content="adopt a dog Johannesburg, adopt a cat Johannesburg, adopt a rabbit, pets for adoption Gauteng, animal adoption fees, rescue animals">
+  <meta name="author" content="Ubuntu Paws Animal Rescue">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0f6e56">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="canonical" href="https://travismilla94-star.github.io/ubuntu-paws/services.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Ubuntu Paws Animal Rescue">
+  <meta property="og:title" content="Adopt a Dog, Cat or Rabbit in Johannesburg | Ubuntu Paws">
+  <meta property="og:description" content="Browse rescued dogs, cats and rabbits available for adoption in Johannesburg. Search by species, age and name, then enquire online.">
+  <meta property="og:url" content="https://travismilla94-star.github.io/ubuntu-paws/services.html">
+  <meta property="og:image" content="https://travismilla94-star.github.io/ubuntu-paws/images/og-image.png">
+  <meta property="og:image:alt" content="Illustration of a rescued dog and cat sitting together">
+  <meta property="og:locale" content="en_ZA">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Adopt a Dog, Cat or Rabbit in Johannesburg | Ubuntu Paws">
+  <meta name="twitter:description" content="Browse rescued dogs, cats and rabbits available for adoption in Johannesburg. Search by species, age and name, then enquire online.">
+  <meta name="twitter:image" content="https://travismilla94-star.github.io/ubuntu-paws/images/og-image.png">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header id="top">
+    <div class="logo">
+      <svg class="logo-mark" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true">
+        <ellipse cx="32" cy="42" rx="15" ry="13"/>
+        <ellipse cx="14" cy="28" rx="7" ry="9"/>
+        <ellipse cx="50" cy="28" rx="7" ry="9"/>
+        <ellipse cx="24" cy="14" rx="6" ry="8"/>
+        <ellipse cx="40" cy="14" rx="6" ry="8"/>
+      </svg>
+      Ubuntu Paws <span>Animal Rescue</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html" class="active">Services</a></li>
+        <li><a href="enquiry.html">Enquiry</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="page-heading">
+      <h1>Our services</h1>
+      <p>From rescue to rehoming, here is how we care for every animal that comes through our doors.</p>
+    </section>
+
+    <!-- Rescue and rehabilitation process -->
+    <section class="content-block">
+      <h2>Rescue and rehabilitation</h2>
+      <p>Every animal we take in is assessed by our consulting veterinarian, vaccinated, sterilised and,
+        where needed, treated for injury or illness before being placed into our shelter or foster care
+        network to recover and socialise.</p>
+    </section>
+
+    <!-- Adoptable animals list -->
+    <section class="content-block">
+      <h2>Animals available for adoption</h2>
+
+      <!-- Search / filter / sort controls (enhanced by js/main.js) -->
+      <div class="toolbar" role="search" aria-label="Search and filter animals">
+        <div class="toolbar-field">
+          <label for="animal-search">Search</label>
+          <input type="search" id="animal-search" placeholder="Name or keyword, e.g. garden" autocomplete="off">
+        </div>
+        <div class="toolbar-field">
+          <label for="animal-species">Species</label>
+          <select id="animal-species">
+            <option value="all">All animals</option>
+            <option value="dog">Dogs</option>
+            <option value="cat">Cats</option>
+            <option value="rabbit">Rabbits</option>
+          </select>
+        </div>
+        <div class="toolbar-field">
+          <label for="animal-sort">Sort by</label>
+          <select id="animal-sort">
+            <option value="name-asc">Name (A to Z)</option>
+            <option value="name-desc">Name (Z to A)</option>
+            <option value="age-asc">Age (youngest first)</option>
+            <option value="age-desc">Age (oldest first)</option>
+          </select>
+        </div>
+      </div>
+      <p class="result-count" id="animal-count" aria-live="polite"></p>
+      <p class="empty-state" id="animal-empty" hidden>No animals match your search. Try a different word or choose &ldquo;All animals&rdquo;.</p>
+
+      <!-- Static copy of the first three animals: shown if JavaScript is off,
+           replaced by the full list loaded from data/animals.json otherwise -->
+      <ul class="animal-list" id="animal-list">
+        <li>
+          <h3><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:1.1em;height:1.1em;flex-shrink:0"><ellipse cx="12" cy="16" rx="5.5" ry="5"/><ellipse cx="5" cy="10" rx="2.4" ry="3"/><ellipse cx="19" cy="10" rx="2.4" ry="3"/><ellipse cx="9" cy="5" rx="2" ry="2.8"/><ellipse cx="15" cy="5" rx="2" ry="2.8"/></svg> Simba</h3>
+          <p>A two-year-old male cross-breed dog, friendly and great with children. Fully vaccinated and sterilised.</p>
+        </li>
+        <li>
+          <h3><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:1.1em;height:1.1em;flex-shrink:0"><ellipse cx="12" cy="16" rx="5.5" ry="5"/><ellipse cx="5" cy="10" rx="2.4" ry="3"/><ellipse cx="19" cy="10" rx="2.4" ry="3"/><ellipse cx="9" cy="5" rx="2" ry="2.8"/><ellipse cx="15" cy="5" rx="2" ry="2.8"/></svg> Miso</h3>
+          <p>A one-year-old female tabby cat, playful and litter-trained. Fully vaccinated and sterilised.</p>
+        </li>
+        <li>
+          <h3><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:1.1em;height:1.1em;flex-shrink:0"><ellipse cx="12" cy="16" rx="5.5" ry="5"/><ellipse cx="5" cy="10" rx="2.4" ry="3"/><ellipse cx="19" cy="10" rx="2.4" ry="3"/><ellipse cx="9" cy="5" rx="2" ry="2.8"/><ellipse cx="15" cy="5" rx="2" ry="2.8"/></svg> Rocky</h3>
+          <p>A five-year-old male terrier mix, calm and well-suited to an apartment. Fully vaccinated and sterilised.</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Photo gallery with lightbox -->
+    <section class="content-block">
+      <h2>Meet some of our residents</h2>
+      <p>Select a picture to view it larger.</p>
+      <ul class="gallery">
+        <li><a href="images/simba-cross-breed-dog.svg" data-caption="Simba, a friendly two-year-old cross-breed dog"><img src="images/simba-cross-breed-dog.svg" alt="Illustration of Simba, a friendly cross-breed dog with a blue collar" width="600" height="600" loading="lazy"></a></li>
+        <li><a href="images/miso-tabby-cat.svg" data-caption="Miso, a playful one-year-old tabby cat"><img src="images/miso-tabby-cat.svg" alt="Illustration of Miso, a tabby cat wearing a gold collar" width="600" height="600" loading="lazy"></a></li>
+        <li><a href="images/rocky-terrier-mix.svg" data-caption="Rocky, a calm five-year-old terrier mix"><img src="images/rocky-terrier-mix.svg" alt="Illustration of Rocky, a calm grey terrier mix with an orange collar" width="600" height="600" loading="lazy"></a></li>
+        <li><a href="images/hero-desktop.svg" data-caption="A rescued dog and cat, happily rehomed together"><img src="images/hero-desktop.svg" alt="Illustration of a rescued dog and cat sitting together under a heart" width="900" height="520" loading="lazy"></a></li>
+      </ul>
+    </section>
+
+    <!-- Adoption process -->
+    <section class="content-block">
+      <h2>How adoption works</h2>
+      <ol>
+        <li>Submit an enquiry through our <a href="enquiry.html">enquiry form</a> or <a href="contact.html">visit us</a>.</li>
+        <li>Meet the animal at our shelter or a foster carer's home.</li>
+        <li>Complete a short adoption application and home check.</li>
+        <li>Take your new companion home, with a follow-up call two weeks later.</li>
+      </ol>
+    </section>
+    <!-- Interactive accordion: frequently asked questions -->
+    <section class="content-block">
+      <h2>Adoption questions answered</h2>
+      <div class="accordion" data-accordion>
+        <h3><button type="button" class="accordion-trigger" id="faq-fee-btn" aria-expanded="false" aria-controls="faq-fee">How much does it cost to adopt?</button></h3>
+        <div class="accordion-panel" id="faq-fee" role="region" aria-labelledby="faq-fee-btn"><p>Adoption fees are R300 for rabbits, R750 for cats and R950 for dogs. Fees include vaccination, sterilisation and a health check.</p></div>
+        <h3><button type="button" class="accordion-trigger" id="faq-home-btn" aria-expanded="false" aria-controls="faq-home">Will you check my home?</button></h3>
+        <div class="accordion-panel" id="faq-home" role="region" aria-labelledby="faq-home-btn"><p>Yes. A friendly home check makes sure the animal will be safe and a good match, and a volunteer follows up two weeks after adoption.</p></div>
+        <h3><button type="button" class="accordion-trigger" id="faq-foster-btn" aria-expanded="false" aria-controls="faq-foster">Can I foster instead of adopt?</button></h3>
+        <div class="accordion-panel" id="faq-foster" role="region" aria-labelledby="faq-foster-btn"><p>Absolutely. Fostering is a short-term way to help, and we cover food and vet care. <a href="contact.html">Contact our foster care office</a> to get started.</p></div>
+        <h3><button type="button" class="accordion-trigger" id="faq-return-btn" aria-expanded="false" aria-controls="faq-return">What if it does not work out?</button></h3>
+        <div class="accordion-panel" id="faq-return" role="region" aria-labelledby="faq-return-btn"><p>Please bring the animal back to us rather than rehoming it privately. We will always take adopted animals back and find them a new family.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Ubuntu Paws Animal Rescue. All rights reserved.</p>
+    <p>This is a fictional organisation created for academic purposes as part of an IIE web development project.</p>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="services.html">Services</a>
+      <a href="enquiry.html">Enquiry</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="back-to-top" href="#top">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+      Back to top
+    </a>
+  </footer>
+
+  <!-- Floating call-to-action: keeps the primary conversion goal reachable -->
+  <a class="fab" href="enquiry.html">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+    <span class="fab-label">Adopt &amp; Donate</span>
+  </a>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

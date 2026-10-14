@@ -1,0 +1,8 @@
+# robots.txt for Ubuntu Paws Animal Rescue
+# Allow all well-behaved crawlers to index the whole site.
+User-agent: *
+Allow: /
+Disallow: /documents/
+
+# Sitemap location on the published GitHub Pages site
+Sitemap: https://travismilla94-star.github.io/ubuntu-paws/sitemap.xml
