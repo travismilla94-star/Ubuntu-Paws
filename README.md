@@ -321,7 +321,7 @@ replace `YOUR_FORM_ID` with your form's id.
 4. The site address (`https://travismilla94-star.github.io/ubuntu-paws/`) is already set in every `canonical`, `og:url`, `og:image` and `twitter:image` tag, the JSON-LD on `index.html`, `sitemap.xml` and `robots.txt`. If you name the repository something other than `ubuntu-paws`, use find-and-replace to update it in those places.
 5. Add the live link under **Live site** below and submit the repository link on the LMS.
 
-**Live site:** https://travismilla94-star.github.io/ubuntu-paws/
+**Live site:** https://travismilla94-star.github.io/Ubuntu-Paws-POE/
 **Repository:** https://github.com/travismilla94-star/ubuntu-paws
 
 ## Changelog
